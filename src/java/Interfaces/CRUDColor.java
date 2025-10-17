@@ -4,10 +4,11 @@
  */
 package Interfaces;
 
-/**
- *
- * @author HP
- */
+import Modelo.clsColor;
+import java.util.List;
+
 public interface CRUDColor {
     
+
+    List<clsColor> mtdListarActivos();
 }

@@ -3,11 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package Interfaces;
+import Modelo.clsModelo;
+import java.util.List;
 
 /**
  *
  * @author HP
  */
 public interface CRUDModelo {
+    
+     List<clsModelo> mtdListarActivos();
     
 }

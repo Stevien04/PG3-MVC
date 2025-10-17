@@ -20,9 +20,6 @@ public class ControlEmpleado extends HttpServlet {
     private final clsDAOcargo daoCargo = new clsDAOcargo();
     private final clsDAOTipoDocumento daoTipoDocumento = new clsDAOTipoDocumento();
 
-    // ----------------------------------------------------------
-    //  MÉTODO GET
-    // ----------------------------------------------------------
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -78,9 +75,6 @@ public class ControlEmpleado extends HttpServlet {
         }
     }
 
-    // ----------------------------------------------------------
-    //  MÉTODO POST
-    // ----------------------------------------------------------
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -95,9 +89,6 @@ public class ControlEmpleado extends HttpServlet {
         }
     }
 
-    // ----------------------------------------------------------
-    //  MÉTODOS DE PROCESO
-    // ----------------------------------------------------------
     private void procesarAgregar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -151,13 +142,10 @@ public class ControlEmpleado extends HttpServlet {
         response.sendRedirect("srvEmpleado?accion=listarActivos");
     }
 
-    // ----------------------------------------------------------
-    //  LISTAR
-    // ----------------------------------------------------------
+
     private void listarEmpleados(HttpServletRequest request, HttpServletResponse response, boolean activos)
             throws ServletException, IOException {
 
-        // ✅ Limpieza de residuos del formulario anterior
         request.removeAttribute("empleadoForm");
         request.removeAttribute("mensajeError");
 
@@ -170,9 +158,7 @@ public class ControlEmpleado extends HttpServlet {
         request.getRequestDispatcher("VistaEmpleado/EmpleadoMain.jsp").forward(request, response);
     }
 
-    // ----------------------------------------------------------
-    //  CARGA DE LISTAS Y REENVÍO
-    // ----------------------------------------------------------
+
     private void cargarListasAuxiliares(HttpServletRequest request) {
         request.setAttribute("listaCargos", daoCargo.mtdListarActivos());
         List<clsTipoDocumento> tipos = daoTipoDocumento.listarTodos();
@@ -187,9 +173,6 @@ public class ControlEmpleado extends HttpServlet {
         request.getRequestDispatcher("VistaEmpleado/EmpleadoMain.jsp").forward(request, response);
     }
 
-    // ----------------------------------------------------------
-    //  UTILIDADES
-    // ----------------------------------------------------------
     private clsEmpleado construirEmpleadoDesdeRequest(HttpServletRequest request, boolean esActualizacion) {
         clsEmpleado empleado = new clsEmpleado();
         empleado.setNombre(obtenerParametro(request, "nombre"));
@@ -230,9 +213,6 @@ public class ControlEmpleado extends HttpServlet {
         return valor != null ? valor.trim() : "";
     }
 
-    // ----------------------------------------------------------
-    //  VALIDACIÓN
-    // ----------------------------------------------------------
     private String validarEmpleado(clsEmpleado empleado, boolean esActualizacion, int idActual) {
 
         if (empleado.getNombre() == null || empleado.getNombre().trim().isEmpty()) {

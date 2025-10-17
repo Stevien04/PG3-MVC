@@ -10,11 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Controlador principal para la entidad Cargo.
- * Maneja todas las acciones del CRUD y validaciones.
- * @author Razse
- */
 @WebServlet(name = "srvCargo", urlPatterns = {"/srvCargo"})
 public class ControlCargo extends HttpServlet {
 
@@ -93,7 +88,6 @@ public class ControlCargo extends HttpServlet {
                 return;
             }
 
-            // Verificar si ya existe
             if (dao.mtdExisteNombre(nombre)) {
                 request.setAttribute("mensajeError", "El nombre de cargo ya está registrado.");
                 reenviarConError(request, response);
@@ -126,10 +120,8 @@ public class ControlCargo extends HttpServlet {
                 reenviarConError(request, response);
                 return;
             }
-
             int id = Integer.parseInt(idParam);
 
-            // Verificar si el nuevo nombre ya existe en otro registro
             if (dao.mtdExisteNombre(nombre)) {
                 clsCargo actual = dao.mtdObtenerPorId(id);
                 if (!actual.getNombre().equalsIgnoreCase(nombre)) {
@@ -138,7 +130,6 @@ public class ControlCargo extends HttpServlet {
                     return;
                 }
             }
-
             int estado = Integer.parseInt(estadoParam);
             clsCargo cargo = new clsCargo(id, nombre.trim(), estado);
             dao.mtdEditar(cargo);
@@ -147,9 +138,7 @@ public class ControlCargo extends HttpServlet {
         }
     }
 
-    /**
-     * Método auxiliar que reenvía al JSP principal con mensaje de error.
-     */
+   
     private void reenviarConError(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<clsCargo> listaActivos = dao.mtdListarActivos();
