@@ -1,3 +1,6 @@
+<%--
+    Formulario para editar marcas existentes
+--%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -6,14 +9,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Editar Marca</title>
     </head>
     <body>
-        
+
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Editar Categoría</title>
+<title>Editar Marca</title>
 <style>
     body {
         font-family: 'Poppins', sans-serif;
@@ -100,19 +103,19 @@
 <body>
 
     <div class="form-container">
-        <h2>Editar Categoría</h2>
+        <h2>Editar Marca</h2>
 
         <c:if test="${not empty mensajeError}">
             <div class="mensaje-error">${mensajeError}</div>
         </c:if>
 
-        <form action="${pageContext.request.contextPath}/srvCategoria" method="post" onsubmit="return validarFormulario();">
+        <form action="${pageContext.request.contextPath}/srvMarca" method="post" onsubmit="return validarFormulario();">
             <input type="hidden" name="accion" value="actualizar">
-            <input type="hidden" name="id" value="${categoria.idCategoria}">
+            <input type="hidden" name="id" value="${marca.idMarca}">
 
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" id="nombre"
-                   value="${categoria.nombre}"
+                   value="${marca.nombre}"
                    maxlength="20"
                    required
                    pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+"
@@ -121,8 +124,8 @@
 
             <label for="estado">Estado:</label>
             <select name="estado" id="estado" required>
-                <option value="1" ${categoria.estado == 1 ? 'selected' : ''}>Activa</option>
-                <option value="0" ${categoria.estado == 0 ? 'selected' : ''}>Inactiva</option>
+                <option value="1" ${marca.estado == 1 ? 'selected' : ''}>Activa</option>
+                <option value="0" ${marca.estado == 0 ? 'selected' : ''}>Inactiva</option>
             </select>
 
             <button type="submit">Guardar Cambios</button>
@@ -156,4 +159,7 @@ function validarFormulario() {
 }
 </script>
 </body>
+</html>
+
+    </body>
 </html>

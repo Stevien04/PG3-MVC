@@ -6,9 +6,12 @@ public class clsEmpleado {
     private String nombre;
     private String apellido;
     private int idCargo;
+    private String cargoNombre;
     private String usuario;
     private String clave;
+    private String claveVisible;
     private int idTipoDocumento;
+    private String tipoDocumentoNombre;
     private String numeroDocumento;
     private String telefono;
     private int estado;
@@ -45,6 +48,14 @@ public class clsEmpleado {
         this.idCargo = idCargo;
     }
 
+    public String getCargoNombre() {
+        return cargoNombre;
+    }
+
+    public void setCargoNombre(String cargoNombre) {
+        this.cargoNombre = cargoNombre;
+    }
+
     public String getUsuario() {
         return usuario;
     }
@@ -61,12 +72,28 @@ public class clsEmpleado {
         this.clave = clave;
     }
 
+    public String getClaveVisible() {
+        return claveVisible;
+    }
+
+    public void setClaveVisible(String claveVisible) {
+        this.claveVisible = claveVisible;
+    }
+
     public int getIdTipoDocumento() {
         return idTipoDocumento;
     }
 
     public void setIdTipoDocumento(int idTipoDocumento) {
         this.idTipoDocumento = idTipoDocumento;
+    }
+
+    public String getTipoDocumentoNombre() {
+        return tipoDocumentoNombre;
+    }
+
+    public void setTipoDocumentoNombre(String tipoDocumentoNombre) {
+        this.tipoDocumentoNombre = tipoDocumentoNombre;
     }
 
     public String getNumeroDocumento() {

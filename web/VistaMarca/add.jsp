@@ -1,3 +1,6 @@
+<%--
+    Formulario para registrar nuevas marcas
+--%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -6,14 +9,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Nueva Marca</title>
     </head>
     <body>
-        
+
+    </body>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Editar Categoría</title>
+<title>Nueva Marca</title>
 <style>
     body {
         font-family: 'Poppins', sans-serif;
@@ -100,19 +104,18 @@
 <body>
 
     <div class="form-container">
-        <h2>Editar Categoría</h2>
+        <h2>Nueva Marca</h2>
 
         <c:if test="${not empty mensajeError}">
             <div class="mensaje-error">${mensajeError}</div>
         </c:if>
 
-        <form action="${pageContext.request.contextPath}/srvCategoria" method="post" onsubmit="return validarFormulario();">
-            <input type="hidden" name="accion" value="actualizar">
-            <input type="hidden" name="id" value="${categoria.idCategoria}">
+        <form action="${pageContext.request.contextPath}/srvMarca" method="post" onsubmit="return validarFormulario();">
+            <input type="hidden" name="accion" value="agregar">
 
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" id="nombre"
-                   value="${categoria.nombre}"
+                   value="${empty marcaFormNombre ? '' : marcaFormNombre}"
                    maxlength="20"
                    required
                    pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+"
@@ -121,11 +124,11 @@
 
             <label for="estado">Estado:</label>
             <select name="estado" id="estado" required>
-                <option value="1" ${categoria.estado == 1 ? 'selected' : ''}>Activa</option>
-                <option value="0" ${categoria.estado == 0 ? 'selected' : ''}>Inactiva</option>
+                <option value="1" ${empty marcaFormEstado || marcaFormEstado == '1' ? 'selected' : ''}>Activa</option>
+                <option value="0" ${marcaFormEstado == '0' ? 'selected' : ''}>Inactiva</option>
             </select>
 
-            <button type="submit">Guardar Cambios</button>
+            <button type="submit">Registrar Marca</button>
         </form>
     </div>
 

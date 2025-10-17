@@ -5,6 +5,10 @@
         <servlet-class>Controlador.ControlCategoria</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ControlMarca</servlet-name>
+        <servlet-class>Controlador.ControlMarca</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ControlCliente</servlet-name>
         <servlet-class>Controlador.ControlCliente</servlet-class>
     </servlet>
@@ -19,6 +23,10 @@
     <servlet-mapping>
         <servlet-name>ControlCategoria</servlet-name>
         <url-pattern>/ControlCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlMarca</servlet-name>
+        <url-pattern>/ControlMarca</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ControlCliente</servlet-name>

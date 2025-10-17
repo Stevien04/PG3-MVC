@@ -1,14 +1,26 @@
+<%--
+    Listado de marcas con acciones de búsqueda y estado
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Lista de Marcas</title>
+    </head>
+    <body>
+
+    </body>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Lista de Empleados</title>
+<title>Lista de Marcas</title>
 <style>
     body {
         font-family: 'Poppins', sans-serif;
-        background: linear-gradient(135deg, #e0f7fa, #b3e5fc);
+        background: linear-gradient(135deg, #e3f2fd, #bbdefb);
         margin: 0;
         padding: 30px 0;
         color: #1a237e;
@@ -27,7 +39,7 @@
     }
 
     .btn {
-        background-color: #1e88e5;
+        background-color: #1976d2;
         color: #fff;
         padding: 10px 18px;
         border-radius: 8px;
@@ -39,7 +51,7 @@
     }
 
     .btn:hover {
-        background-color: #1565c0;
+        background-color: #0d47a1;
         transform: scale(1.05);
     }
 
@@ -54,21 +66,22 @@
         padding: 10px 14px;
         border: 1.5px solid #90caf9;
         border-radius: 8px;
-        width: 360px;
+        width: 320px;
         font-size: 1rem;
         outline: none;
+        color: #0d47a1;
         transition: 0.3s;
         background-color: #fff;
     }
 
     .search-box:focus {
-        border-color: #1e88e5;
-        box-shadow: 0 0 6px rgba(30,136,229,0.4);
+        border-color: #1976d2;
+        box-shadow: 0 0 6px rgba(25,118,210,0.4);
     }
 
     .search-btn {
         display: inline-block;
-        background-color: #1e88e5;
+        background-color: #1976d2;
         border: none;
         padding: 9px 25px;
         border-radius: 6px;
@@ -80,14 +93,14 @@
     }
 
     .search-btn:hover {
-        background-color: #1565c0;
+        background-color: #0d47a1;
         transform: scale(1.05);
     }
 
     table {
         margin: auto;
         border-collapse: collapse;
-        width: 95%;
+        width: 85%;
         background-color: #ffffff;
         border-radius: 10px;
         overflow: hidden;
@@ -95,7 +108,7 @@
     }
 
     th {
-        background-color: #42a5f5;
+        background-color: #2196f3;
         color: #fff;
         text-transform: uppercase;
         padding: 12px;
@@ -107,7 +120,6 @@
         padding: 12px;
         border-bottom: 1px solid #e0e0e0;
         text-align: center;
-        font-size: 0.95rem;
     }
 
     tr:hover {
@@ -126,12 +138,12 @@
     }
 
     .btn-editar:hover {
-        background-color: #fdd835;
+        background-color: #ffb300;
         transform: scale(1.05);
     }
 
     .btn-eliminar {
-        background-color: #ef5350;
+        background-color: #e53935;
         color: white;
         padding: 6px 10px;
         border-radius: 5px;
@@ -141,33 +153,30 @@
     }
 
     .btn-eliminar:hover {
-        background-color: #d32f2f;
+        background-color: #c62828;
         transform: scale(1.05);
     }
 
-    .estado-activo {
-        color: #1b5e20;
-        font-weight: bold;
-    }
-
-    .estado-inactivo {
-        color: #b71c1c;
-        font-weight: bold;
+    .footer {
+        text-align: center;
+        margin-top: 30px;
+        color: #1976d2;
+        font-size: 0.9rem;
     }
 </style>
 </head>
 <body>
-    <h1>Lista de Empleados</h1>
+    <h1>Lista de Marcas</h1>
 
     <div class="buttons">
-        <a href="${pageContext.request.contextPath}/srvEmpleado?accion=listarActivos" class="btn" target="_top">Activos</a>
-        <a href="${pageContext.request.contextPath}/srvEmpleado?accion=listarInactivos" class="btn" target="_top">Inactivos</a>
+        <a href="${pageContext.request.contextPath}/srvMarca?accion=listarActivos" class="btn" target="_top">Activas</a>
+        <a href="${pageContext.request.contextPath}/srvMarca?accion=listarInactivos" class="btn" target="_top">Inactivas</a>
     </div>
 
     <div class="search-container">
-        <form action="${pageContext.request.contextPath}/srvEmpleado" method="get" target="_top">
+        <form action="${pageContext.request.contextPath}/srvMarca" method="get" target="_top">
             <input type="hidden" name="accion" value="buscar">
-            <input type="text" name="texto" class="search-box" placeholder="Buscar por ID, nombre, apellido o usuario" required>
+            <input type="text" name="texto" class="search-box" placeholder="Buscar por ID o Nombre..." required>
             <br>
             <button type="submit" class="search-btn">🔍 Buscar</button>
         </form>
@@ -178,47 +187,35 @@
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Cargo</th>
-                <th>Usuario</th>
-                <th>Tipo Documento</th>
-                <th>N° Documento</th>
-                <th>Teléfono</th>
                 <th>Estado</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="empleado" items="${listaEmpleados}">
+            <c:forEach var="marca" items="${listaMarcas}">
                 <tr>
-                    <td>${empleado.idEmpleado}</td>
-                    <td>${empleado.nombre}</td>
-                    <td>${empleado.apellido}</td>
-                    <td>${empty empleado.cargoNombre ? '—' : empleado.cargoNombre}</td>
-                    <td>${empleado.usuario}</td>
-                    <td>${empty empleado.tipoDocumentoNombre ? '—' : empleado.tipoDocumentoNombre}</td>
-                    <td>${empleado.numeroDocumento}</td>
-                    <td>${empleado.telefono}</td>
+                    <td>${marca.idMarca}</td>
+                    <td>${marca.nombre}</td>
                     <td>
                         <c:choose>
-                            <c:when test="${empleado.estado == 1}">
-                                <span class="estado-activo">Activo</span>
+                            <c:when test="${marca.estado == 1}">
+                                <span style="color: #1b5e20; font-weight: bold;">Activa</span>
                             </c:when>
                             <c:otherwise>
-                                <span class="estado-inactivo">Inactivo</span>
+                                <span style="color: #b71c1c; font-weight: bold;">Inactiva</span>
                             </c:otherwise>
                         </c:choose>
                     </td>
                     <td>
                         <a class="btn-editar"
-                           href="${pageContext.request.contextPath}/srvEmpleado?accion=editar&id=${empleado.idEmpleado}"
+                           href="${pageContext.request.contextPath}/srvMarca?accion=editar&id=${marca.idMarca}"
                            target="_top">Editar</a>
 
                         <a class="btn-eliminar"
-                           href="${pageContext.request.contextPath}/srvEmpleado?accion=eliminar&id=${empleado.idEmpleado}"
+                           href="${pageContext.request.contextPath}/srvMarca?accion=eliminar&id=${marca.idMarca}"
                            target="_top">
                             <c:choose>
-                                <c:when test="${empleado.estado == 1}">Desactivar</c:when>
+                                <c:when test="${marca.estado == 1}">Desactivar</c:when>
                                 <c:otherwise>Activar</c:otherwise>
                             </c:choose>
                         </a>
@@ -227,5 +224,9 @@
             </c:forEach>
         </tbody>
     </table>
+
+    <div class="footer">
+        <p>🏷️ Gestiona las marcas para destacar tus productos.</p>
+    </div>
 </body>
 </html>

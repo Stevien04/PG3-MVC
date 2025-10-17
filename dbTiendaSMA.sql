@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         10.4.32-MariaDB - mariadb.org binary distribution
+-- Versión del servidor:         10.4.27-MariaDB - mariadb.org binary distribution
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             12.11.0.7065
+-- HeidiSQL Versión:             12.4.0.6659
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -86,16 +86,18 @@ CREATE TABLE IF NOT EXISTS `tbcategoria` (
   `Categoria` varchar(20) NOT NULL DEFAULT '',
   `Estado` int(11) NOT NULL,
   PRIMARY KEY (`idcategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla dbtiendasma.tbcategoria: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla dbtiendasma.tbcategoria: ~8 rows (aproximadamente)
 INSERT INTO `tbcategoria` (`idcategoria`, `Categoria`, `Estado`) VALUES
-	(1, 'Lateos', 1),
-	(2, 'Embutidos', 0),
-	(3, 'Cereales', 0),
-	(4, 'prueba', 0),
-	(5, 'Carne', 1),
-	(6, 'Postres', 1);
+	(1, 'ZAPATILLAS', 1),
+	(2, 'BOTAS', 0),
+	(3, 'ACCESORIOS', 0),
+	(4, 'JEANS', 0),
+	(5, 'POLOS', 1),
+	(6, 'BLUSAS', 1),
+	(7, 'PANTALON', 1),
+	(8, 'ZAPATOS', 1);
 
 -- Volcando estructura para tabla dbtiendasma.tbcliente
 CREATE TABLE IF NOT EXISTS `tbcliente` (
@@ -139,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `tbempleado` (
   `Apellido` varchar(200) NOT NULL,
   `idcargo` int(11) NOT NULL DEFAULT 0,
   `Usuario` varchar(12) NOT NULL DEFAULT '0',
-  `Clave` varchar(15) NOT NULL DEFAULT '0',
+  `Clave` varchar(255) NOT NULL DEFAULT '0',
   `idTipoDocumento` int(11) NOT NULL DEFAULT 0,
   `NumeroDocumento` varchar(10) NOT NULL DEFAULT '0',
   `Telefono` varchar(9) NOT NULL,
@@ -153,8 +155,8 @@ CREATE TABLE IF NOT EXISTS `tbempleado` (
 
 -- Volcando datos para la tabla dbtiendasma.tbempleado: ~2 rows (aproximadamente)
 INSERT INTO `tbempleado` (`idEmpleado`, `Nombre`, `Apellido`, `idcargo`, `Usuario`, `Clave`, `idTipoDocumento`, `NumeroDocumento`, `Telefono`, `Estado`) VALUES
-	(1, 'Stevie', 'Marca', 1, 'stevie', '123456', 1, '72405382', '979739029', 1),
-	(2, 'Jose', 'Tarqui', 2, 'Jose', '123456', 2, '11', '11', 1);
+	(1, 'STEVIE', 'MARCA', 1, 'stevie', 'u5Ju3SbuJ+FaMlMKq3TcFVUGMh1+Uoe5xCgmYhvzSq0=', 1, '72405382', '979739029', 1),
+	(2, 'JOSE', 'TARQUI', 2, 'Jose', '8M6o9dZbSYbuyZOZTe99dy9ZP9mgeB/q5Cw7nA1kQCA=', 2, '72405381', '979739028', 1);
 
 -- Volcando estructura para tabla dbtiendasma.tbmarca
 CREATE TABLE IF NOT EXISTS `tbmarca` (
@@ -162,11 +164,15 @@ CREATE TABLE IF NOT EXISTS `tbmarca` (
   `nombre` varchar(50) NOT NULL,
   `estado` int(11) NOT NULL,
   PRIMARY KEY (`idmarca`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla dbtiendasma.tbmarca: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla dbtiendasma.tbmarca: ~5 rows (aproximadamente)
 INSERT INTO `tbmarca` (`idmarca`, `nombre`, `estado`) VALUES
-	(1, 'Adidas', 1);
+	(1, 'ADIDAS', 1),
+	(2, 'CALVIN KLEIN', 1),
+	(3, 'MANGO', 1),
+	(4, 'BALANCE', 1),
+	(5, 'ZARA', 1);
 
 -- Volcando estructura para tabla dbtiendasma.tbmodelo
 CREATE TABLE IF NOT EXISTS `tbmodelo` (

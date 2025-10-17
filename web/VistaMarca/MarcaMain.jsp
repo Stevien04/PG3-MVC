@@ -2,9 +2,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
     <meta charset="UTF-8">
-    <title>Gestión de Empleados</title>
+    <title>Gestión de Marcas</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,17 +17,16 @@
             height: 100vh;
         }
         .izquierda {
-            flex: 3;
+            flex: 2;
             padding: 20px;
             background-color: #fff;
             border-right: 2px solid #ddd;
             overflow-y: auto;
         }
         .derecha {
-            flex: 2;
+            flex: 1;
             padding: 20px;
             background-color: #fafafa;
-            overflow-y: auto;
         }
         h1 {
             text-align: center;
@@ -43,7 +42,7 @@
 
         <div class="derecha">
             <c:choose>
-                <c:when test="${not empty empleado}">
+                <c:when test="${not empty marca}">
                     <jsp:include page="edit.jsp" />
                 </c:when>
                 <c:otherwise>

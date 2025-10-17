@@ -13,10 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * Controlador encargado del flujo de autenticación. Gestiona la generación del
- * captcha y la validación de las credenciales de acceso.
- */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class ControlLogin extends HttpServlet {
 
