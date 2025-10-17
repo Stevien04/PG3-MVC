@@ -9,6 +9,7 @@
             <file>file:/C:/Users/HP/Downloads/SM03-MVC-SMA/PG3-MVC/src/java/Controlador/ControlProductoTalla.java</file>
             <file>file:/C:/Users/HP/Downloads/SM03-MVC-SMA/PG3-MVC/src/java/Interfaces/CRUDTipoTalla.java</file>
             <file>file:/C:/Users/HP/Downloads/SM03-MVC-SMA/PG3-MVC/web/VistaProducto/ProductoMain.jsp</file>
+            <file>file:/C:/Users/HP/Downloads/SM03-MVC-SMA/PG3-MVC/src/java/Util/AESGCMUtil.java</file>
             <file>file:/C:/Users/HP/Downloads/SM03-MVC-SMA/PG3-MVC/web/VistaProducto/add.jsp</file>
             <file>file:/C:/Users/HP/Downloads/SM03-MVC-SMA/PG3-MVC/src/java/Modelo/clsTipoTalla.java</file>
             <file>file:/C:/Users/HP/Downloads/SM03-MVC-SMA/PG3-MVC/src/java/Modelo/clsColor.java</file>
@@ -36,6 +37,7 @@
             <file>file:/C:/Users/HP/Downloads/SM03-MVC-SMA/PG3-MVC/src/java/Interfaces/CRUDModelo.java</file>
             <file>file:/C:/Users/HP/Downloads/SM03-MVC-SMA/PG3-MVC/src/java/Modelo/clsCargo.java</file>
             <file>file:/C:/Users/HP/Downloads/SM03-MVC-SMA/PG3-MVC/src/java/Controlador/ControlEmpleado.java</file>
+            <file>file:/C:/Users/HP/Downloads/SM03-MVC-SMA/PG3-MVC/src/java/Modelo/clsCategoria.java</file>
             <file>file:/C:/Users/HP/Downloads/SM03-MVC-SMA/PG3-MVC/web/VistaProductoTalla/add.jsp</file>
             <file>file:/C:/Users/HP/Downloads/SM03-MVC-SMA/PG3-MVC/src/java/Modelo/clsProducto.java</file>
             <file>file:/C:/Users/HP/Downloads/SM03-MVC-SMA/PG3-MVC/src/java/ModeloDao/clsDAOTipoTalla.java</file>
@@ -46,6 +48,7 @@
             <file>file:/C:/Users/HP/Downloads/SM03-MVC-SMA/PG3-MVC/web/VistaProductoTalla/lista.jsp</file>
             <file>file:/C:/Users/HP/Downloads/SM03-MVC-SMA/PG3-MVC/src/java/Modelo/clsProductoTalla.java</file>
             <file>file:/C:/Users/HP/Downloads/SM03-MVC-SMA/PG3-MVC/src/java/ModeloDao/clsDAOColor.java</file>
+            <file>file:/C:/Users/HP/Downloads/SM03-MVC-SMA/PG3-MVC/src/java/ModeloDao/clsDAOEmpleado.java</file>
             <file>file:/C:/Users/HP/Downloads/SM03-MVC-SMA/PG3-MVC/web/VistaProductoTalla/edit.jsp</file>
             <file>file:/C:/Users/HP/Downloads/SM03-MVC-SMA/PG3-MVC/src/java/Controlador/ControlCargo.java</file>
         </group>

@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.math.BigDecimal;
+import java.util.Base64;
 
 public class clsProducto {
 
@@ -34,16 +35,6 @@ public class clsProducto {
         this.precioUnitario = precioUnitario;
         this.estado = estado;
         this.foto = foto;
-    }
-
-    public clsProducto(int idProducto, int idCategoria, Integer idModelo, Integer idColor, int idMarca,
-                       String nombre, int cantidad, BigDecimal precioUnitario, int estado, byte[] foto,
-                       String nombreCategoria, String nombreMarca, String nombreModelo, String nombreColor) {
-        this(idProducto, idCategoria, idModelo, idColor, idMarca, nombre, cantidad, precioUnitario, estado, foto);
-        this.nombreCategoria = nombreCategoria;
-        this.nombreMarca = nombreMarca;
-        this.nombreModelo = nombreModelo;
-        this.nombreColor = nombreColor;
     }
 
     public int getIdProducto() {
@@ -124,6 +115,13 @@ public class clsProducto {
 
     public void setFoto(byte[] foto) {
         this.foto = foto;
+    }
+
+    public String getFotoBase64() {
+        if (foto == null || foto.length == 0) {
+            return null;
+        }
+        return Base64.getEncoder().encodeToString(foto);
     }
 
     public String getNombreCategoria() {

@@ -3,7 +3,6 @@ package ModeloDao;
 import Config.clsConexion;
 import Interfaces.CRUDProducto;
 import Modelo.clsProducto;
-import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,11 +43,11 @@ public class clsDAOProducto implements CRUDProducto {
       + "WHERE p.idproducto = ?";
 
     private static final String SQL_INSERTAR =
-        "INSERT INTO tbproducto (idcategoria, idmodelo, idcolor, idmarca, nombre, cantidad, preciounitario, estado) "
-      + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+         "INSERT INTO tbproducto (idcategoria, idmodelo, idcolor, idmarca, nombre, cantidad, preciounitario, estado, foto) "
+      + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private static final String SQL_ACTUALIZAR =
-        "UPDATE tbproducto SET idcategoria=?, idmodelo=?, idcolor=?, idmarca=?, nombre=?, cantidad=?, preciounitario=?, estado=? "
+        "UPDATE tbproducto SET idcategoria=?, idmodelo=?, idcolor=?, idmarca=?, nombre=?, cantidad=?, preciounitario=?, estado=?, foto=? "
       + "WHERE idproducto=?";
 
     private static final String SQL_CAMBIAR_ESTADO =
@@ -72,29 +71,6 @@ public class clsDAOProducto implements CRUDProducto {
             }
         } catch (SQLException e) {
             System.out.println("Error al listar productos por estado: " + e.getMessage());
-            e.printStackTrace();
-        }
-        return lista;
-    }
-
-    @Override
-    public List<clsProducto> mtdBuscar(String texto) {
-        List<clsProducto> lista = new ArrayList<>();
-        try (Connection con = clsConexion.getConnection();
-             PreparedStatement ps = con.prepareStatement(SQL_BUSCAR)) {
-
-            String filtro = "%" + texto + "%";
-            ps.setString(1, filtro);
-            ps.setString(2, filtro);
-            ps.setString(3, filtro);
-
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    lista.add(construirProductoDesdeResultSet(rs));
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al buscar productos: " + e.getMessage());
             e.printStackTrace();
         }
         return lista;
@@ -131,6 +107,7 @@ public class clsDAOProducto implements CRUDProducto {
             ps.setInt(6, producto.getCantidad());
             ps.setBigDecimal(7, producto.getPrecioUnitario());
             ps.setInt(8, producto.getEstado());
+            asignarBytesNulos(ps, 9, producto.getFoto());
             ps.executeUpdate();
             return true;
 
@@ -154,7 +131,8 @@ public class clsDAOProducto implements CRUDProducto {
             ps.setInt(6, producto.getCantidad());
             ps.setBigDecimal(7, producto.getPrecioUnitario());
             ps.setInt(8, producto.getEstado());
-            ps.setInt(9, producto.getIdProducto());
+            asignarBytesNulos(ps, 9, producto.getFoto());
+            ps.setInt(10, producto.getIdProducto());
             ps.executeUpdate();
             return true;
 
@@ -179,6 +157,29 @@ public class clsDAOProducto implements CRUDProducto {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public List<clsProducto> mtdBuscar(String texto) {
+        List<clsProducto> lista = new ArrayList<>();
+        try (Connection con = clsConexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(SQL_BUSCAR)) {
+
+            String filtro = "%" + texto + "%";
+            ps.setString(1, filtro);
+            ps.setString(2, filtro);
+            ps.setString(3, filtro);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(construirProductoDesdeResultSet(rs));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al buscar productos: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return lista;
     }
 
     // ------------------------------------------------------------------------
@@ -212,9 +213,17 @@ public class clsDAOProducto implements CRUDProducto {
 
     private void asignarEnteroNulo(PreparedStatement ps, int indice, Integer valor) throws SQLException {
         if (valor == null) {
-            ps.setNull(indice, java.sql.Types.INTEGER);
+            ps.setNull(indice, Types.INTEGER);
         } else {
             ps.setInt(indice, valor);
+        }
+    }
+
+    private void asignarBytesNulos(PreparedStatement ps, int indice, byte[] datos) throws SQLException {
+        if (datos == null || datos.length == 0) {
+            ps.setNull(indice, Types.BLOB);
+        } else {
+            ps.setBytes(indice, datos);
         }
     }
 }
