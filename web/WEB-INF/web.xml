@@ -20,6 +20,10 @@
         <servlet-name>ControlLogin</servlet-name>
         <servlet-class>Controlador.ControlLogin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControlProducto</servlet-name>
+        <servlet-class>Controlador.ControlProducto</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControlCategoria</servlet-name>
         <url-pattern>/ControlCategoria</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>ControlLogin</servlet-name>
         <url-pattern>/ControlLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlProducto</servlet-name>
+        <url-pattern>/ControlProducto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
