@@ -22,47 +22,88 @@ public class ControlLogin extends HttpServlet {
     private static final char[] CAPTCHA_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789".toCharArray();
     private static final int CAPTCHA_LENGTH = 6;
 
+    // ============================================================
+    //  MÉTODO GET
+    // ============================================================
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String captcha = generarCaptcha();
+
+        // Verifica si se pidió regenerar el captcha manualmente
+        String accion = request.getParameter("accion");
+
         HttpSession session = request.getSession(true);
-        session.setAttribute(SESSION_CAPTCHA_KEY, captcha);
-        request.setAttribute("captcha", captcha);
+
+        // Si no existe captcha o se pidió regenerar, genera uno nuevo
+        if (session.getAttribute(SESSION_CAPTCHA_KEY) == null || "nuevoCaptcha".equalsIgnoreCase(accion)) {
+            String captcha = generarCaptcha();
+            session.setAttribute(SESSION_CAPTCHA_KEY, captcha);
+            request.setAttribute("captcha", captcha);
+        } else {
+            // Si ya existe, lo usa
+            request.setAttribute("captcha", session.getAttribute(SESSION_CAPTCHA_KEY));
+        }
+
         request.getRequestDispatcher("/VistaLogin/LoginEm.jsp").forward(request, response);
     }
 
+    // ============================================================
+    //  MÉTODO POST
+    // ============================================================
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         String usuario = request.getParameter("usuario");
         String contrasena = request.getParameter("contrasena");
         String captchaIngresado = request.getParameter("captcha");
 
         HttpSession session = request.getSession(false);
-        String captchaEsperado = session != null ? (String) session.getAttribute(SESSION_CAPTCHA_KEY) : null;
+        if (session == null) {
+            mostrarError(request, response, "Sesión expirada. Intenta nuevamente.");
+            return;
+        }
 
+        String captchaEsperado = (String) session.getAttribute(SESSION_CAPTCHA_KEY);
+
+        // Verifica el captcha
         if (captchaEsperado == null || captchaIngresado == null
                 || !captchaEsperado.equalsIgnoreCase(captchaIngresado)) {
             mostrarError(request, response, "El captcha ingresado es incorrecto.");
             return;
         }
 
+        // Busca usuario
         Optional<clsEmpleado> empleadoOpt = daoEmpleado.buscarPorUsuario(usuario);
         if (empleadoOpt.isPresent() && AESGCMUtil.matches(contrasena, empleadoOpt.get().getClave())) {
+
+            // Login exitoso
             HttpSession sessionActual = session != null ? session : request.getSession(true);
             sessionActual.setAttribute("usuarioAutenticado", empleadoOpt.get());
-            sessionActual.removeAttribute(SESSION_CAPTCHA_KEY);
-            response.sendRedirect(request.getContextPath() + "/VistaLogin/LoginEm.jsp");
+            sessionActual.removeAttribute(SESSION_CAPTCHA_KEY); // Limpia captcha
+            response.sendRedirect(request.getContextPath() + "/VistaMenu/MenuMain.jsp");
+
         } else {
+            // Login incorrecto -> regenerar captcha
+            session.removeAttribute(SESSION_CAPTCHA_KEY);
+            session.setAttribute(SESSION_CAPTCHA_KEY, generarCaptcha());
             mostrarError(request, response, "Usuario o contraseña incorrectos.");
         }
     }
 
+    // ============================================================
+    //  MÉTODOS AUXILIARES
+    // ============================================================
     private void mostrarError(HttpServletRequest request, HttpServletResponse response, String mensaje)
             throws ServletException, IOException {
+
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute(SESSION_CAPTCHA_KEY) != null) {
+            request.setAttribute("captcha", session.getAttribute(SESSION_CAPTCHA_KEY));
+        }
+
         request.setAttribute("mensajeError", mensaje);
-        doGet(request, response);
+        request.getRequestDispatcher("/VistaLogin/LoginEm.jsp").forward(request, response);
     }
 
     private String generarCaptcha() {

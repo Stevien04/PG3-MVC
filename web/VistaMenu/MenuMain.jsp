@@ -6,9 +6,7 @@
     <meta charset="UTF-8">
     <title>Menú principal</title>
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             font-family: 'Poppins', Arial, sans-serif;
@@ -93,92 +91,100 @@
         }
 
         @media (max-width: 600px) {
-            body {
-                padding: 32px 16px;
-            }
+            body { padding: 32px 16px; }
+            h1 { font-size: 32px; }
+            .descripcion { font-size: 16px; }
+        }
 
-            h1 {
-                font-size: 32px;
-            }
+        .logout {
+            margin-top: 50px;
+            color: #ffbaba;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
 
-            .descripcion {
-                font-size: 16px;
-            }
+        .logout:hover {
+            color: #ffffff;
         }
     </style>
 </head>
 <body>
     <h1>Panel principal</h1>
-    <p class="descripcion">
-        Selecciona el módulo que deseas administrar para gestionar catálogos, productos y toda la información de tu tienda.
-    </p>
+<p class="descripcion">
+    Selecciona el módulo que deseas administrar para gestionar catálogos, productos y toda la información de tu tienda.
+</p>
 
-    <main class="grid">
-        <a class="card" href="<c:url value='/srvCategoria'/>">
-            <div class="card-icon">📂</div>
-            <h2>Categorías</h2>
-            <p>Organiza las categorías disponibles para clasificar tus productos.</p>
-        </a>
+<main class="grid">
+    <a class="card" href="<c:url value='/srvCategoria'/>">
+        <div class="card-icon">📂</div>
+        <h2>Categorías</h2>
+        <p>Organiza las categorías disponibles para clasificar tus productos.</p>
+    </a>
 
-        <a class="card" href="<c:url value='/srvProducto'/>">
-            <div class="card-icon">📦</div>
-            <h2>Productos</h2>
-            <p>Gestiona el catálogo de productos y su información principal.</p>
-        </a>
+    <a class="card" href="<c:url value='/srvProducto'/>">
+        <div class="card-icon">📦</div>
+        <h2>Productos</h2>
+        <p>Gestiona el catálogo de productos y su información principal.</p>
+    </a>
 
-        <a class="card" href="<c:url value='/srvProductoTalla'/>">
-            <div class="card-icon">🧮</div>
-            <h2>Producto - Talla</h2>
-            <p>Relaciona productos con tallas disponibles y controla su stock.</p>
-        </a>
+    <a class="card" href="<c:url value='/srvProductoTalla'/>">
+        <div class="card-icon">🧮</div>
+        <h2>Producto - Talla</h2>
+        <p>Relaciona productos con tallas disponibles y controla su stock.</p>
+    </a>
 
-        <a class="card" href="<c:url value='/srvColor'/>">
-            <div class="card-icon">🎨</div>
-            <h2>Colores</h2>
-            <p>Administra la paleta de colores disponibles para los productos.</p>
-        </a>
+    <a class="card" href="<c:url value='/srvColor'/>">
+        <div class="card-icon">🎨</div>
+        <h2>Colores</h2>
+        <p>Administra la paleta de colores disponibles para los productos.</p>
+    </a>
 
-        <a class="card" href="<c:url value='/srvTalla'/>">
-            <div class="card-icon">📏</div>
-            <h2>Tallas</h2>
-            <p>Controla las tallas registradas y su disponibilidad.</p>
-        </a>
+    <a class="card" href="<c:url value='/srvTalla'/>">
+        <div class="card-icon">📏</div>
+        <h2>Tallas</h2>
+        <p>Controla las tallas registradas y su disponibilidad.</p>
+    </a>
 
-        <a class="card" href="<c:url value='/srvTipoTalla'/>">
-            <div class="card-icon">🧵</div>
-            <h2>Tipos de Talla</h2>
-            <p>Define los tipos de tallas y cómo se agrupan en el sistema.</p>
-        </a>
+    <a class="card" href="<c:url value='/srvTipoTalla'/>">
+        <div class="card-icon">🧵</div>
+        <h2>Tipos de Talla</h2>
+        <p>Define los tipos de tallas y cómo se agrupan en el sistema.</p>
+    </a>
 
-        <a class="card" href="<c:url value='/srvMarca'/>">
-            <div class="card-icon">🏷️</div>
-            <h2>Marcas</h2>
-            <p>Gestiona las marcas asociadas a los productos de la tienda.</p>
-        </a>
+    <a class="card" href="<c:url value='/srvMarca'/>">
+        <div class="card-icon">🏷️</div>
+        <h2>Marcas</h2>
+        <p>Gestiona las marcas asociadas a los productos de la tienda.</p>
+    </a>
 
-        <a class="card" href="<c:url value='/srvModelo'/>">
-            <div class="card-icon">🧩</div>
-            <h2>Modelos</h2>
-            <p>Registra los modelos de productos y sus características.</p>
-        </a>
+    <a class="card" href="<c:url value='/srvModelo'/>">
+        <div class="card-icon">🧩</div>
+        <h2>Modelos</h2>
+        <p>Registra los modelos de productos y sus características.</p>
+    </a>
 
-        <a class="card" href="<c:url value='/srvCliente'/>">
-            <div class="card-icon">🧑‍🤝‍🧑</div>
-            <h2>Clientes</h2>
-            <p>Accede al directorio de clientes y gestiona su información.</p>
-        </a>
+    <a class="card" href="<c:url value='/srvCliente'/>">
+        <div class="card-icon">🧑‍🤝‍🧑</div>
+        <h2>Clientes</h2>
+        <p>Accede al directorio de clientes y gestiona su información.</p>
+    </a>
 
-        <a class="card" href="<c:url value='/srvEmpleado'/>">
-            <div class="card-icon">👥</div>
-            <h2>Empleados</h2>
-            <p>Controla los datos de los colaboradores de la organización.</p>
-        </a>
+    <a class="card" href="<c:url value='/srvEmpleado'/>">
+        <div class="card-icon">👥</div>
+        <h2>Empleados</h2>
+        <p>Controla los datos de los colaboradores de la organización.</p>
+    </a>
 
-        <a class="card" href="<c:url value='/srvCargo'/>">
-            <div class="card-icon">💼</div>
-            <h2>Cargos</h2>
-            <p>Define los cargos o roles que pueden ocupar los empleados.</p>
-        </a>
+    <a class="card" href="<c:url value='/srvCargo'/>">
+        <div class="card-icon">💼</div>
+        <h2>Cargos</h2>
+        <p>Define los cargos o roles que pueden ocupar los empleados.</p>
+    </a>
+</main>
+
     </main>
+
+    <a class="logout" href="<c:url value='/logout'/>">Cerrar sesión</a>
 </body>
 </html>

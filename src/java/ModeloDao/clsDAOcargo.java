@@ -7,16 +7,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Implementación DAO para la entidad Cargo.
- * Contiene los métodos CRUD definidos en la interfaz CRUDcargo.
- * Se comunica directamente con la base de datos MySQL.
- *
- * @author Razse
- */
+
 public class clsDAOcargo implements CRUDcargo {
 
-    // MÉTODO: LISTAR SOLO ACTIVOS
+  
     @Override
     public List<clsCargo> mtdListarActivos() {
         List<clsCargo> lista = new ArrayList<>();
@@ -38,7 +32,7 @@ public class clsDAOcargo implements CRUDcargo {
         return lista;
     }
 
-    // MÉTODO: LISTAR SOLO INACTIVOS
+    
     @Override
     public List<clsCargo> mtdListarInactivos() {
         List<clsCargo> lista = new ArrayList<>();
@@ -60,7 +54,7 @@ public class clsDAOcargo implements CRUDcargo {
         return lista;
     }
 
-    // MÉTODO: BUSCAR POR ID
+
     @Override
     public clsCargo mtdObtenerPorId(int id) {
         String sql = "SELECT * FROM tbcargo WHERE idcargo = ?";
@@ -84,7 +78,6 @@ public class clsDAOcargo implements CRUDcargo {
         return c;
     }
 
-    // MÉTODO: BUSCAR POR ID O NOMBRE (parcial)
     @Override
     public List<clsCargo> mtdBuscar(String texto) {
         List<clsCargo> lista = new ArrayList<>();
@@ -110,7 +103,6 @@ public class clsDAOcargo implements CRUDcargo {
         return lista;
     }
 
-    // MÉTODO: AGREGAR NUEVO CARGO
     @Override
     public boolean mtdAgregar(clsCargo cargo) {
         String sql = "INSERT INTO tbcargo(nombre, estado) VALUES(?, ?)";
@@ -127,7 +119,7 @@ public class clsDAOcargo implements CRUDcargo {
         return false;
     }
 
-    // MÉTODO: EDITAR CARGO EXISTENTE
+   
     @Override
     public boolean mtdEditar(clsCargo cargo) {
         String sql = "UPDATE tbcargo SET nombre = ?, estado = ? WHERE idcargo = ?";
@@ -145,7 +137,7 @@ public class clsDAOcargo implements CRUDcargo {
         return false;
     }
 
-    // MÉTODO: CAMBIAR ESTADO (ACTIVO/INACTIVO)
+
     @Override
     public boolean mtdCambiarEstado(int id) {
         String sql = "UPDATE tbcargo SET estado = CASE WHEN estado = 1 THEN 0 ELSE 1 END WHERE idcargo = ?";
@@ -161,7 +153,7 @@ public class clsDAOcargo implements CRUDcargo {
         return false;
     }
 
-    // MÉTODO: VERIFICAR SI EXISTE UN NOMBRE DE CARGO (para evitar duplicados)
+ 
     @Override
     public boolean mtdExisteNombre(String nombre) {
         String sql = "SELECT COUNT(*) FROM tbcargo WHERE LOWER(nombre) = LOWER(?)";

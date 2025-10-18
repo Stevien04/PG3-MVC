@@ -39,7 +39,7 @@ public class clsDAOEmpleado implements CRUDEmpleado {
             = "SELECT COUNT(*) FROM tbempleado WHERE NumeroDocumento=? AND idEmpleado<>?";
     private static final String SQL_FIND_BY_USER = BASE_SELECT + "WHERE e.Usuario = ?";
 
-    // --- MÉTODOS CRUD ---
+    
     @Override
     public List<clsEmpleado> mtdListarActivos() {
         return ejecutarConsultaMultiple(SQL_LISTAR_ACTIVOS, ps -> {
