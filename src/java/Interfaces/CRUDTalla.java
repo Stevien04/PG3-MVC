@@ -4,10 +4,25 @@
  */
 package Interfaces;
 
-/**
- *
- * @author HP
- */
+import Modelo.clsTalla;
+import java.util.List;
+
 public interface CRUDTalla {
     
+
+    List<clsTalla> mtdListarActivos();
+
+    List<clsTalla> mtdListarInactivos();
+
+    clsTalla mtdObtenerPorId(int id);
+
+    List<clsTalla> mtdBuscar(String texto);
+
+    boolean mtdAgregar(clsTalla talla);
+
+    boolean mtdEditar(clsTalla talla);
+
+    boolean mtdCambiarEstado(int id);
+
+    boolean mtdExisteValor(int idTipoTalla, String valor, Integer idExcluir);
 }
