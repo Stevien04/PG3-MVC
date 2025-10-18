@@ -1,14 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package Interfaces;
 
 import Modelo.clsColor;
 import java.util.List;
 
 public interface CRUDColor {
-    
-
+ 
     List<clsColor> mtdListarActivos();
+
+    List<clsColor> mtdListarInactivos();
+
+    clsColor mtdObtenerPorId(int id);
+
+    List<clsColor> mtdBuscar(String texto);
+
+    boolean mtdAgregar(clsColor color);
+
+    boolean mtdEditar(clsColor color);
+
+    boolean mtdCambiarEstado(int id);
+
+    boolean mtdExisteNombre(String nombre);
 }
