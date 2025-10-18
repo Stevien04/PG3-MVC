@@ -12,6 +12,20 @@ import java.util.List;
  */
 public interface CRUDModelo {
     
-     List<clsModelo> mtdListarActivos();
+    List<clsModelo> mtdListarActivos();
+
+    List<clsModelo> mtdListarInactivos();
+
+    clsModelo mtdObtenerPorId(int id);
+
+    List<clsModelo> mtdBuscar(String texto);
+
+    boolean mtdAgregar(clsModelo modelo);
+
+    boolean mtdEditar(clsModelo modelo);
+
+    boolean mtdCambiarEstado(int id);
+
+    boolean mtdExisteNombre(String nombre);
     
 }

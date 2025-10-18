@@ -1,13 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package Interfaces;
 
-/**
- *
- * @author HP
- */
+import Modelo.clsTipoTalla;
+import java.util.List;
+
 public interface CRUDTipoTalla {
     
+
+    List<clsTipoTalla> mtdListarActivos();
+
+    List<clsTipoTalla> mtdListarInactivos();
+
+    clsTipoTalla mtdObtenerPorId(int id);
+
+    List<clsTipoTalla> mtdBuscar(String texto);
+
+    boolean mtdAgregar(clsTipoTalla tipoTalla);
+
+    boolean mtdEditar(clsTipoTalla tipoTalla);
+
+    boolean mtdCambiarEstado(int id);
+
+    boolean mtdExisteNombre(String nombre);
 }

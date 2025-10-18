@@ -1,19 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelo;
 
-/**
- *
- * @author HP
- */
 public class clsModelo {
-
     private int idModelo;
     private int idMarca;
     private String nombre;
     private int estado;
+    private clsMarca marca; // ← ESTA es la nueva propiedad
 
     public clsModelo() {
     }
@@ -25,6 +17,7 @@ public class clsModelo {
         this.estado = estado;
     }
 
+    // Getters y setters
     public int getIdModelo() {
         return idModelo;
     }
@@ -57,4 +50,12 @@ public class clsModelo {
         this.estado = estado;
     }
 
+    // ↓↓↓ Aquí el método que te falta ↓↓↓
+    public clsMarca getMarca() {
+        return marca;
+    }
+
+    public void setMarca(clsMarca marca) {
+        this.marca = marca;
+    }
 }
