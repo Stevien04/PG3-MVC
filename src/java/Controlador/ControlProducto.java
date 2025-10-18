@@ -223,9 +223,6 @@ public class ControlProducto extends HttpServlet {
         request.getRequestDispatcher("VistaProducto/ProductoMain.jsp").forward(request, response);
     }
 
-    // ----------------------------------------------------------
-    // MÉTODO MODIFICADO
-    // ----------------------------------------------------------
     private boolean asignarDatosFormulario(HttpServletRequest request, clsProducto producto, boolean esEdicion)
             throws ServletException, IOException {
 
@@ -250,7 +247,6 @@ public class ControlProducto extends HttpServlet {
         Integer idColor = parseEnteroOpcional(request.getParameter("idColor"));
         producto.setIdColor(idColor);
 
-        // Obtener los nombres de esas entidades
         String nombreCategoria = "";
         String nombreMarca = "";
         String nombreModelo = "";
@@ -304,7 +300,7 @@ public class ControlProducto extends HttpServlet {
         }
         producto.setEstado(estado);
 
-        // Manejar foto
+    
         if (esSolicitudMultipart(request)) {
             Part fotoPart = request.getPart("foto");
             if (fotoPart != null && fotoPart.getSize() > 0) {

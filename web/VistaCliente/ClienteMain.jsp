@@ -15,7 +15,8 @@
 
             .contenedor {
                 display: flex;
-                height: 100vh;
+             
+                min-height: calc(100vh - 100px);
                 gap: 0;
             }
 
@@ -40,10 +41,37 @@
                 color: #0d47a1;
             }
 
+            .barra-superior {
+                background: linear-gradient(90deg, #0d47a1, #42a5f5);
+                padding: 18px 32px;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                box-shadow: 0 4px 18px rgba(13, 71, 161, 0.25);
+            }
+
+            .btn-menu {
+                background: #ffffff;
+                color: #0d47a1;
+                padding: 10px 22px;
+                border-radius: 999px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+                box-shadow: 0 10px 20px rgba(13, 71, 161, 0.25);
+            }
+
+            .btn-menu:hover {
+                color: #08306b;
+                transform: translateY(-2px);
+                box-shadow: 0 14px 24px rgba(13, 71, 161, 0.35);
+            }
+
             @media (max-width: 1000px) {
                 .contenedor {
                     flex-direction: column;
-                    height: auto;
+                  
+                    min-height: auto;
                 }
                 .izquierda, .derecha {
                     width: 100%;
@@ -53,6 +81,10 @@
         </style>
     </head>
     <body>
+
+        <div class="barra-superior">
+            <a class="btn-menu" href="<c:url value='/VistaMenu/MenuMain.jsp'/>">Volver al Menú</a>
+        </div>
 
         <div class="contenedor">
             <div class="izquierda">

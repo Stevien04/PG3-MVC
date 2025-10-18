@@ -29,7 +29,7 @@ public class ControlLogin extends HttpServlet {
         HttpSession session = request.getSession(true);
         session.setAttribute(SESSION_CAPTCHA_KEY, captcha);
         request.setAttribute("captcha", captcha);
-        request.getRequestDispatcher("/VistaCategoria/CategoriaMain.jsp").forward(request, response);
+        request.getRequestDispatcher("/VistaLogin/LoginEm.jsp").forward(request, response);
     }
 
     @Override

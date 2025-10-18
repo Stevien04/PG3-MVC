@@ -3,9 +3,14 @@
 <c:set var="productoActual" value="${productoForm}" />
 <c:set var="estadoSeleccionado" value="${productoActual ne null ? productoActual.estado : 1}" />
 
+<!-- Barra superior (solo visible en add.jsp) -->
+<div class="barra-superior">
+    <a class="btn-menu" href="<c:url value='/VistaMenu/MenuMain.jsp'/>">Volver al Menú</a>
+</div>
+
 <div class="form-card">
     <h2>Registrar producto</h2>
-    <p class="nota-campo">El nombre se genera automáticamente según la categoría, marca y modelo seleccionados.</p>
+    <p class="nota-campo">Completa la información para añadir un nuevo producto al catálogo.</p>
 
     <c:if test="${not empty mensajeErrorProducto and empty producto}">
         <div class="alerta-error">
@@ -17,23 +22,18 @@
         <input type="hidden" name="accion" value="agregar" />
         <input type="hidden" name="vista" value="${mostrarActivos ? 'activos' : 'inactivos'}" />
 
-        <!-- Nombre generado automáticamente -->
         <div class="form-group">
-            <label for="nombre">Nombre del producto</label>
-            <input type="text" id="nombre" name="nombre"
-                   value="${productoActual != null ? productoActual.nombre : ''}"
-                   readonly style="background-color: #f0f0f0; cursor: not-allowed;" />
-            <span class="nota-campo">Este campo se llenará automáticamente al seleccionar categoría, marca y modelo.</span>
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" maxlength="60" placeholder="Nombre del producto"
+                   value="${productoActual != null ? productoActual.nombre : ''}" required />
         </div>
 
         <div class="form-group">
             <label for="idCategoria">Categoría</label>
-            <select id="idCategoria" name="idCategoria" required onchange="generarNombre()">
+            <select id="idCategoria" name="idCategoria" required>
                 <option value="">Seleccione una categoría</option>
                 <c:forEach var="categoria" items="${categorias}">
-                    <option value="${categoria.idCategoria}"
-                            data-nombre="${categoria.nombre}"
-                            <c:if test="${productoActual != null && productoActual.idCategoria == categoria.idCategoria}">selected</c:if>>
+                    <option value="${categoria.idCategoria}" <c:if test="${productoActual != null && productoActual.idCategoria == categoria.idCategoria}">selected</c:if>>
                         <c:out value="${categoria.nombre}" />
                     </option>
                 </c:forEach>
@@ -42,12 +42,10 @@
 
         <div class="form-group">
             <label for="idMarca">Marca</label>
-            <select id="idMarca" name="idMarca" required onchange="generarNombre()">
+            <select id="idMarca" name="idMarca" required>
                 <option value="">Seleccione una marca</option>
                 <c:forEach var="marca" items="${marcas}">
-                    <option value="${marca.idMarca}"
-                            data-nombre="${marca.nombre}"
-                            <c:if test="${productoActual != null && productoActual.idMarca == marca.idMarca}">selected</c:if>>
+                    <option value="${marca.idMarca}" <c:if test="${productoActual != null && productoActual.idMarca == marca.idMarca}">selected</c:if>>
                         <c:out value="${marca.nombre}" />
                     </option>
                 </c:forEach>
@@ -56,12 +54,10 @@
 
         <div class="form-group">
             <label for="idModelo">Modelo <span class="nota-campo">(opcional)</span></label>
-            <select id="idModelo" name="idModelo" onchange="generarNombre()">
+            <select id="idModelo" name="idModelo">
                 <option value="">Sin modelo</option>
                 <c:forEach var="modelo" items="${modelos}">
-                    <option value="${modelo.idModelo}"
-                            data-nombre="${modelo.nombre}"
-                            <c:if test="${productoActual != null && productoActual.idModelo != null && productoActual.idModelo == modelo.idModelo}">selected</c:if>>
+                    <option value="${modelo.idModelo}" <c:if test="${productoActual != null && productoActual.idModelo != null && productoActual.idModelo == modelo.idModelo}">selected</c:if>>
                         <c:out value="${modelo.nombre}" />
                     </option>
                 </c:forEach>
@@ -73,8 +69,7 @@
             <select id="idColor" name="idColor">
                 <option value="">Sin color</option>
                 <c:forEach var="color" items="${colores}">
-                    <option value="${color.idColor}"
-                            <c:if test="${productoActual != null && productoActual.idColor != null && productoActual.idColor == color.idColor}">selected</c:if>>
+                    <option value="${color.idColor}" <c:if test="${productoActual != null && productoActual.idColor != null && productoActual.idColor == color.idColor}">selected</c:if>>
                         <c:out value="${color.nombre}" />
                     </option>
                 </c:forEach>
@@ -113,12 +108,33 @@
     </form>
 </div>
 
-<script>
-function generarNombre() {
-    const categoria = document.querySelector("#idCategoria option:checked").dataset.nombre || "";
-    const marca = document.querySelector("#idMarca option:checked").dataset.nombre || "";
-    const modelo = document.querySelector("#idModelo option:checked").dataset.nombre || "";
-    const nombre = (categoria + " " + marca + " " + modelo).trim().toUpperCase();
-    document.getElementById("nombre").value = nombre;
-}
-</script>
+<!-- Estilo del botón superior -->
+<style>
+    .barra-superior {
+        background: linear-gradient(90deg, #14213d, #4361ee);
+        padding: 12px 24px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(20, 33, 61, 0.25);
+        margin-bottom: 22px;
+    }
+
+    .btn-menu {
+        background: #ffffff;
+        color: #14213d;
+        padding: 8px 18px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+        box-shadow: 0 6px 16px rgba(20, 33, 61, 0.25);
+    }
+
+    .btn-menu:hover {
+        color: #0a1128;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(20, 33, 61, 0.35);
+    }
+</style>
