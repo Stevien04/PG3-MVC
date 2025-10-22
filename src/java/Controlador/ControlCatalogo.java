@@ -1,5 +1,6 @@
 package Controlador;
 
+import Modelo.clsItemCarrito;
 import Modelo.clsProducto;
 import ModeloDao.clsDAOCategoria;
 import ModeloDao.clsDAOProducto;
@@ -12,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "ControlCatalogo", urlPatterns = {"/catalogo"})
 public class ControlCatalogo extends HttpServlet {
@@ -39,6 +41,7 @@ public class ControlCatalogo extends HttpServlet {
         request.setAttribute("categorias", daoCategoria.mtdListarActivos());
         request.setAttribute("textoBusqueda", textoBusqueda);
         request.setAttribute("categoriaSeleccionada", categoriaSeleccionada);
+        request.setAttribute("totalItemsCarrito", obtenerTotalItemsCarrito(request));
         request.getRequestDispatcher("VistaMenu/CatalogoMain.jsp").forward(request, response);
     }
 
@@ -94,5 +97,21 @@ public class ControlCatalogo extends HttpServlet {
         }
         String texto = valor.trim();
         return texto.isEmpty() ? null : texto;
+    }
+    private int obtenerTotalItemsCarrito(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            return 0;
+        }
+        @SuppressWarnings("unchecked")
+        List<clsItemCarrito> carrito = (List<clsItemCarrito>) session.getAttribute("carrito");
+        if (carrito == null) {
+            return 0;
+        }
+        int total = 0;
+        for (clsItemCarrito item : carrito) {
+            total += item.getCantidad();
+        }
+        return total;
     }
 }

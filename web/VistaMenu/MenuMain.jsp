@@ -128,11 +128,7 @@
         <p>Gestiona el catálogo de productos y su información principal.</p>
     </a>
 
-    <a class="card" href="<c:url value='/srvProductoTalla'/>">
-        <div class="card-icon">🧮</div>
-        <h2>Producto - Talla</h2>
-        <p>Relaciona productos con tallas disponibles y controla su stock.</p>
-    </a>
+    
 
     <a class="card" href="<c:url value='/srvColor'/>">
         <div class="card-icon">🎨</div>
@@ -140,17 +136,7 @@
         <p>Administra la paleta de colores disponibles para los productos.</p>
     </a>
 
-    <a class="card" href="<c:url value='/srvTalla'/>">
-        <div class="card-icon">📏</div>
-        <h2>Tallas</h2>
-        <p>Controla las tallas registradas y su disponibilidad.</p>
-    </a>
-
-    <a class="card" href="<c:url value='/srvTipoTalla'/>">
-        <div class="card-icon">🧵</div>
-        <h2>Tipos de Talla</h2>
-        <p>Define los tipos de tallas y cómo se agrupan en el sistema.</p>
-    </a>
+ 
 
     <a class="card" href="<c:url value='/srvMarca'/>">
         <div class="card-icon">🏷️</div>

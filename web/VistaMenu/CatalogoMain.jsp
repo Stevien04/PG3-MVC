@@ -29,10 +29,27 @@
             margin: 0 auto;
             padding: 32px 20px 48px;
         }
+        
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
 
         header {
-            text-align: center;
+            
             margin-bottom: 36px;
+        }
+        
+        .header-titles {
+            flex: 1 1 320px;
+        }
+
+        .header-titles h1,
+        .header-titles p {
+            text-align: left;
         }
 
         header h1 {
@@ -50,6 +67,64 @@
             max-width: 680px;
             margin-inline: auto;
         }
+        
+         .btn.carrito {
+            background: linear-gradient(135deg, #2ec4b6, #1b998b);
+            padding-inline: 24px;
+        }
+
+        .btn.carrito:hover {
+            box-shadow: 0 16px 32px rgba(27, 153, 139, 0.25);
+        }
+
+        .badge-cantidad {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 32px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.18);
+            color: inherit;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .alert {
+            margin: 0 0 24px;
+            padding: 16px 20px;
+            border-radius: 16px;
+            font-size: 15px;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .alert button {
+            border: none;
+            background: transparent;
+            color: inherit;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .alert-exito {
+            background: rgba(46, 196, 182, 0.16);
+            color: #0f766e;
+        }
+
+        .alert-error {
+            background: rgba(239, 68, 68, 0.16);
+            color: #b91c1c;
+        }
+
+        .alert-alerta {
+            background: rgba(250, 204, 21, 0.2);
+            color: #b45309;
+        }
+
 
         .filters {
             display: grid;
@@ -215,6 +290,55 @@
             font-size: 13px;
             color: rgba(27, 38, 59, 0.65);
         }
+        .form-carrito {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .acciones-carrito {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .form-carrito label {
+            font-size: 13px;
+            color: rgba(27, 38, 59, 0.7);
+        }
+
+        .form-carrito input[type="number"] {
+            width: 90px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            border: 1px solid #cbd5f5;
+            background: #f8faff;
+            font-size: 14px;
+        }
+
+        .form-carrito input[type="number"]:focus {
+            border-color: #4361ee;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.18);
+        }
+
+        .btn-agregar {
+            flex: 1;
+            min-width: 160px;
+        }
+
+        .sin-stock {
+            margin-top: auto;
+            padding: 12px 16px;
+            background: rgba(239, 68, 68, 0.12);
+            border-radius: 12px;
+            color: #b91c1c;
+            font-weight: 600;
+            text-align: center;
+        }
+
 
         .empty-state {
             text-align: center;
@@ -251,10 +375,28 @@
 <fmt:setLocale value="es_PE" />
 <div class="layout">
     <header>
-        <h1>Catálogo de la tienda</h1>
-        <p>Explora los productos disponibles en tu inventario. La información se actualiza automáticamente con los
-            registros del sistema.</p>
+       <div class="header-top">
+            <div class="header-titles">
+                <h1>Catálogo de la tienda</h1>
+                <p>Explora los productos disponibles en tu inventario. La información se actualiza automáticamente con los
+                    registros del sistema.</p>
+            </div>
+            <a class="btn carrito" href="carrito">
+                Ver carrito
+                <span class="badge-cantidad">
+                    <c:out value="${totalItemsCarrito != null ? totalItemsCarrito : 0}" />
+                </span>
+            </a>
+        </div>
     </header>
+                <c:set var="mensajeCarrito" value="${sessionScope.mensajeCarrito}" />
+    <c:if test="${not empty mensajeCarrito}">
+        <div class="alert alert-${mensajeCarrito.tipo}">
+            <span><c:out value="${mensajeCarrito.texto}" /></span>
+            <button type="button" onclick="this.parentElement.remove()" aria-label="Cerrar aviso">&times;</button>
+        </div>
+        <c:remove var="mensajeCarrito" scope="session" />
+    </c:if>
 
     <form class="filters" method="get" action="catalogo">
         <div>
@@ -355,6 +497,24 @@
                             </c:choose>
                         </div>
                         <div class="stock">Disponible: <strong><c:out value="${producto.cantidad}" /></strong> unidades.</div>
+                         <c:choose>
+                            <c:when test="${producto.cantidad > 0}">
+                                <form class="form-carrito" method="post" action="carrito">
+                                    <input type="hidden" name="accion" value="agregar" />
+                                    <input type="hidden" name="idProducto" value="${producto.idProducto}" />
+                                    <input type="hidden" name="redirect" value="catalogo" />
+                                    <label for="cantidad_${producto.idProducto}">Cantidad</label>
+                                    <div class="acciones-carrito">
+                                        <input id="cantidad_${producto.idProducto}" type="number" name="cantidad" min="1"
+                                               max="${producto.cantidad}" value="1" />
+                                        <button class="btn btn-agregar" type="submit">Añadir al carrito</button>
+                                    </div>
+                                </form>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="sin-stock">Sin stock disponible</div>
+                            </c:otherwise>
+                        </c:choose>
                     </article>
                 </c:forEach>
             </div>
