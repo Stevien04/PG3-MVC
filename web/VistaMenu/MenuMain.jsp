@@ -181,6 +181,12 @@
         <h2>Cargos</h2>
         <p>Define los cargos o roles que pueden ocupar los empleados.</p>
     </a>
+        
+        <a class="card" href="<c:url value='/catalogo'/>">
+        <div class="card-icon">🛒</div>
+        <h2>Catálogo</h2>
+        <p>Consulta el catálogo público sincronizado con tu inventario.</p>
+    </a>
 </main>
 
     </main>

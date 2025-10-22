@@ -82,6 +82,11 @@
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaLogin/LoginEm.jsp</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaLogin/LoginClien.jsp</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/index.html</file>
+            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/ModeloDao/clsDAOcargo.java</file>
+            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Controlador/ControlLogout.java</file>
+            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Util/AESGCMUtil.java</file>
+            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaMenu/CatalogoMain.jsp</file>
+            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Controlador/ControlCatalogo.java</file>
         </group>
     </open-files>
 </project-private>

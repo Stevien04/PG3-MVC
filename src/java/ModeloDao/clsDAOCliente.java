@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class clsDAOCliente implements CRUDCliente {
 
@@ -23,6 +24,7 @@ public class clsDAOCliente implements CRUDCliente {
     private static final String SQL_LISTAR_ACTIVOS = BASE_SELECT + "WHERE c.Estado = 1 ORDER BY c.Nombre, c.Apellido";
     private static final String SQL_LISTAR_INACTIVOS = BASE_SELECT + "WHERE c.Estado = 0 ORDER BY c.Nombre, c.Apellido";
     private static final String SQL_OBTENER_POR_ID = BASE_SELECT + "WHERE c.idcliente = ?";
+    private static final String SQL_FIND_BY_EMAIL = BASE_SELECT + "WHERE LOWER(c.Email) = LOWER(?)";
     private static final String SQL_BUSCAR = BASE_SELECT
             + "WHERE CAST(c.idcliente AS CHAR) LIKE ? "
             + "OR LOWER(c.Nombre) LIKE ? OR LOWER(c.Apellido) LIKE ? "
@@ -157,6 +159,21 @@ public class clsDAOCliente implements CRUDCliente {
     @Override
     public boolean mtdExisteEmail(String email) {
         return existeConParametro(SQL_EXISTE_EMAIL, email);
+    }
+    
+    @Override
+    public Optional<clsCliente> mtdBuscarPorEmail(String email) {
+        if (email == null) {
+            return Optional.empty();
+        }
+
+        String valor = email.trim();
+        if (valor.isEmpty()) {
+            return Optional.empty();
+        }
+
+        List<clsCliente> lista = ejecutarConsultaMultiple(SQL_FIND_BY_EMAIL, ps -> ps.setString(1, valor));
+        return lista.stream().findFirst();
     }
 
     public boolean mtdExisteEmailEnOtro(String email, int idExcluir) {

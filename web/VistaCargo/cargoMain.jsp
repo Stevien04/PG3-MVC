@@ -77,10 +77,10 @@
         <div class="derecha">
             <c:choose>
                 <c:when test="${not empty cargo}">
-                    <jsp:include page="edit.jsp" />
+                    <jsp:include page="add.jsp" />
                 </c:when>
                 <c:otherwise>
-                    <jsp:include page="add.jsp" />
+                    <jsp:include page="edit.jsp" />
                 </c:otherwise>
             </c:choose>
         </div>
