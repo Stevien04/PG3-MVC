@@ -7,6 +7,10 @@ public class clsProductoTalla {
     private int idTalla;
     private int cantidad;
     private Integer estado;
+    private String nombreProducto;
+    private String valorTalla;
+    private String nombreTipoTalla;
+    private Integer cantidadProducto;
 
     public clsProductoTalla() {
     }
@@ -17,6 +21,15 @@ public class clsProductoTalla {
         this.idTalla = idTalla;
         this.cantidad = cantidad;
         this.estado = estado;
+    }
+
+    public clsProductoTalla(int idProductoTalla, int idProducto, int idTalla, int cantidad, Integer estado,
+            String nombreProducto, String valorTalla, String nombreTipoTalla, Integer cantidadProducto) {
+        this(idProductoTalla, idProducto, idTalla, cantidad, estado);
+        this.nombreProducto = nombreProducto;
+        this.valorTalla = valorTalla;
+        this.nombreTipoTalla = nombreTipoTalla;
+        this.cantidadProducto = cantidadProducto;
     }
 
     public int getIdProductoTalla() {
@@ -57,5 +70,37 @@ public class clsProductoTalla {
 
     public void setEstado(Integer estado) {
         this.estado = estado;
+    }
+
+    public String getNombreProducto() {
+        return nombreProducto;
+    }
+
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
+
+    public String getValorTalla() {
+        return valorTalla;
+    }
+
+    public void setValorTalla(String valorTalla) {
+        this.valorTalla = valorTalla;
+    }
+
+    public String getNombreTipoTalla() {
+        return nombreTipoTalla;
+    }
+
+    public void setNombreTipoTalla(String nombreTipoTalla) {
+        this.nombreTipoTalla = nombreTipoTalla;
+    }
+
+    public Integer getCantidadProducto() {
+        return cantidadProducto;
+    }
+
+    public void setCantidadProducto(Integer cantidadProducto) {
+        this.cantidadProducto = cantidadProducto;
     }
 }
