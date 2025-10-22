@@ -28,6 +28,13 @@ public class ControlCarrito extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
+
+        if (!estaClienteAutenticado(session)) {
+            guardarMensaje(session, "alerta", "Debes iniciar sesión para revisar tu carrito.");
+            response.sendRedirect(request.getContextPath() + "/catalogo");
+            return;
+        }
+
         List<clsItemCarrito> carrito = obtenerCarrito(session);
 
         request.setAttribute("itemsCarrito", carrito);
@@ -43,6 +50,12 @@ public class ControlCarrito extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
+        if (!estaClienteAutenticado(session)) {
+            guardarMensaje(session, "alerta", "Debes iniciar sesión para gestionar tu carrito.");
+            response.sendRedirect(request.getContextPath() + "/catalogo");
+            return;
+        }
+
         String accion = obtenerParametro(request.getParameter("accion"));
 
         switch (accion) {
@@ -227,6 +240,10 @@ public class ControlCarrito extends HttpServlet {
             total = total.add(item.getSubtotal());
         }
         return total;
+    }
+
+    private boolean estaClienteAutenticado(HttpSession session) {
+        return session != null && session.getAttribute("clienteAutenticado") != null;
     }
 
     private int parseEnteroPositivo(String valor) {

@@ -29,7 +29,51 @@
             margin: 0 auto;
             padding: 32px 20px 48px;
         }
-        
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+            color: #1b263b;
+        }
+
+        .topbar-links {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .topbar-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid #cbd5f5;
+            color: #1b263b;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .topbar-link:hover {
+            background: #4361ee;
+            color: #ffffff;
+            box-shadow: 0 12px 24px rgba(67, 97, 238, 0.18);
+        }
+
+        .topbar-user {
+            font-weight: 600;
+            color: rgba(27, 38, 59, 0.85);
+        }
+
+        .topbar-user strong {
+            color: #0d1b2a;
+        }
         .header-top {
             display: flex;
             align-items: center;
@@ -374,6 +418,20 @@
 <body>
 <fmt:setLocale value="es_PE" />
 <div class="layout">
+    <div class="topbar">
+        <div class="topbar-links">
+            <c:choose>
+                <c:when test="${not empty sessionScope.clienteAutenticado}">
+                    <span class="topbar-user">Hola, <strong><c:out value="${sessionScope.clienteAutenticado.nombre}" /></strong></span>
+                    <a class="topbar-link" href="logout">Cerrar sesión</a>
+                </c:when>
+                <c:otherwise>
+                    <a class="topbar-link" href="loginCliente">Iniciar sesión</a>
+                </c:otherwise>
+            </c:choose>
+            <a class="topbar-link" href="login">Administrativo</a>
+        </div>
+    </div>
     <header>
        <div class="header-top">
             <div class="header-titles">

@@ -232,8 +232,39 @@
             flex-wrap: wrap;
             justify-content: space-between;
             gap: 16px;
-            align-items: center;
+            align-items: flex-start;
         }
+        .resumen-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .resumen-acciones {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .resumen-acciones form {
+            width: 100%;
+        }
+
+        .resumen-acciones .btn {
+            width: 100%;
+        }
+
+        .nota-pago {
+            font-size: 14px;
+            color: rgba(13, 27, 42, 0.75);
+            max-width: 320px;
+        }
+
+        .nota-pago strong {
+            color: #2c5282;
+        }
+
 
         .resumen-carrito strong {
             font-size: 22px;
@@ -283,6 +314,14 @@
             header {
                 flex-direction: column;
                 align-items: flex-start;
+            }
+            
+            .resumen-acciones {
+                width: 100%;
+            }
+
+            .resumen-acciones .btn {
+                width: 100%;
             }
         }
     </style>
@@ -384,16 +423,24 @@
                     </article>
                 </c:forEach>
             </div>
-            <div class="resumen-carrito">
-                <div>
-                    <span>Total de artículos: <strong><c:out value="${totalItemsCarrito}" /></strong></span>
+            <<div class="resumen-info">
+                    <div class="resumen-info">
+                    <div>
+                        <span>Total de artículos: <strong><c:out value="${totalItemsCarrito}" /></strong></span>
+                    </div>
+                    <div>
+                        <span>Total a pagar: <strong>
+                                <fmt:formatNumber value="${totalCarrito}" type="currency" currencySymbol="S/ " minFractionDigits="2" />
+                            </strong></span>
+                    </div>
+                    </div>
+                            <div class="resumen-acciones">
+                    <form method="get" action="checkout">
+                        <button class="btn" type="submit">Simular pago con PayPal</button>
+                    </form>
+                    <p class="nota-pago">Al confirmar la simulación se <strong>descontará</strong> el stock disponible de cada producto.</p>
                 </div>
-                <div>
-                    <span>Total a pagar: <strong>
-                        <fmt:formatNumber value="${totalCarrito}" type="currency" currencySymbol="S/ " minFractionDigits="2" />
-                    </strong></span>
-                </div>
-                <button class="btn" type="button" disabled>Proceder con la compra</button>
+               
             </div>
         </c:otherwise>
     </c:choose>

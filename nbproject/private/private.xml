@@ -4,7 +4,6 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Controlador/ControlProducto.java</file>
-            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Controlador/ControlProductoTalla.java</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/ModeloDao/clsDAOProducto.java</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Modelo/clsProducto.java</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Controlador/ControlModelo.java</file>
@@ -16,10 +15,8 @@
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaProducto/edit.jsp</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaProducto/add.jsp</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaProducto/ProductoMain.jsp</file>
-            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Interfaces/CRUDTalla.java</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Modelo/clsProductoTalla.java</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/ModeloDao/clsDAOEmpleado.java</file>
-            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Interfaces/CRUDProductoTalla.java</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Interfaces/CRUDEmpleado.java</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Interfaces/CRUDCliente.java</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/ModeloDao/clsDAOCliente.java</file>
@@ -38,28 +35,12 @@
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaColor/add.jsp</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaColor/edit.jsp</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaColor/lista.jsp</file>
-            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaProductoTalla/ProductoTallaMain.jsp</file>
-            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaTalla/TallaMain.jsp</file>
-            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaTalla/add.jsp</file>
-            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaTalla/edit.jsp</file>
-            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaTalla/lista.jsp</file>
-            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaProductoTalla/add.jsp</file>
-            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaProductoTalla/edit.jsp</file>
-            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaProductoTalla/lista.jsp</file>
-            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaTipoTalla/add.jsp</file>
-            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaTipoTalla/edit.jsp</file>
-            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaTipoTalla/lista.jsp</file>
-            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaTipoTalla/TipoTallaMain.jsp</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Controlador/ControlColor.java</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Interfaces/CRUDColor.java</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaMenu/MenuMain.jsp</file>
-            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Controlador/ControlTipoTalla.java</file>
-            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Interfaces/CRUDTipoTalla.java</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Modelo/clsTalla.java</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Modelo/clsTipoDocumento.java</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Modelo/clsTipoTalla.java</file>
-            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/ModeloDao/clsDAOTipoTalla.java</file>
-            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Controlador/ControlTalla.java</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Modelo/clsModelo.java</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/ModeloDao/clsDAOModelo.java</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Controlador/ControlMarca.java</file>
@@ -67,7 +48,6 @@
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/ModeloDao/clsDAOMarca.java</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Controlador/ControlCategoria.java</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Controlador/ControlEmpleado.java</file>
-            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/ModeloDao/clsDAOTalla.java</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaCargo/cargoMain.jsp</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaCategoria/CategoriaMain.jsp</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaEmpleado/EmpleadoMain.jsp</file>
@@ -87,6 +67,20 @@
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Util/AESGCMUtil.java</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaMenu/CatalogoMain.jsp</file>
             <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Controlador/ControlCatalogo.java</file>
+            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaCargo/edit.jsp</file>
+            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaCargo/add.jsp</file>
+            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Controlador/ControlLoginCliente.java</file>
+            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Controlador/ControlRegistroCliente.java</file>
+            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaLogin/RegistroCliente.jsp</file>
+            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/WEB-INF/web.xml</file>
+            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Modelo/dtoResumenProductoTalla.java</file>
+            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/ModeloDao/clsDAOTipoDocumento.java</file>
+            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Controlador/ControlCarrito.java</file>
+            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Modelo/clsItemCarrito.java</file>
+            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaMenu/CarritoMain.jsp</file>
+            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/src/java/Controlador/ControlCheckout.java</file>
+            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaMenu/CheckoutResultado.jsp</file>
+            <file>file:/D:/Proyectos/PG03-MVC-SMA/PG3-MVC/PG3-MVC/web/VistaMenu/CheckoutPaypal.jsp</file>
         </group>
     </open-files>
 </project-private>

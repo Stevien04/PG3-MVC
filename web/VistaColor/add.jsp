@@ -1,144 +1,135 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="productoActual" value="${productoForm}" />
-<c:set var="estadoSeleccionado" value="${productoActual ne null ? productoActual.estado : 1}" />
 
-<!-- Barra superior -->
-<div class="barra-superior">
-    <a class="btn-menu" href="<c:url value='/VistaMenu/MenuMain.jsp'/>">Volver al Menú</a>
-</div>
+<c:set var="nombreFormulario" value="${not empty colorFormNombre ? colorFormNombre : ''}" />
+<c:set var="estadoFormulario" value="${not empty colorFormEstado ? colorFormEstado : 1}" />
 
-<div class="form-card">
-    <h2>Registrar producto</h2>
-    <p class="nota-campo">Completa la información para añadir un nuevo producto al catálogo.</p>
+<div class="form-container">
+    <h2>Registrar Color</h2>
 
-    <c:if test="${not empty mensajeErrorProducto and empty producto}">
-        <div class="alerta-error">
-            <c:out value="${mensajeErrorProducto}" />
-        </div>
+     <c:if test="${not empty mensajeError}">
+        <div class="mensaje-error">${mensajeError}</div>
     </c:if>
+        <form action="${pageContext.request.contextPath}/srvColor" method="post" onsubmit="return validarFormulario();">
+        <input type="hidden" name="accion" value="registrar">
 
-    <form action="srvProducto" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="accion" value="agregar" />
-        <input type="hidden" name="vista" value="${mostrarActivos ? 'activos' : 'inactivos'}" />
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre"
+               value="${nombreFormulario}"
+               maxlength="30"
+               required
+               pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+"
+               title="Solo letras y espacios. Máximo 30 caracteres."
+               oninput="this.value = this.value.toUpperCase();">
 
-        <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" maxlength="60" placeholder="Nombre del producto"
-                   value="${productoActual != null ? productoActual.nombre : ''}" required />
-        </div>
+        <label for="estado">Estado:</label>
+        <select name="estado" id="estado" required>
+            <option value="1" <c:if test="${estadoFormulario == 1}">selected</c:if>>Activo</option>
+            <option value="0" <c:if test="${estadoFormulario == 0}">selected</c:if>>Inactivo</option>
+        </select>
 
-        <div class="form-group">
-            <label for="idCategoria">Categoría</label>
-            <select id="idCategoria" name="idCategoria" required>
-                <option value="">Seleccione una categoría</option>
-                <c:forEach var="categoria" items="${categorias}">
-                    <option value="${categoria.idCategoria}"
-                            <c:if test="${productoActual != null && productoActual.idCategoria == categoria.idCategoria}">selected</c:if>>
-                        <c:out value="${categoria.nombre}" />
-                    </option>
-                </c:forEach>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="idMarca">Marca</label>
-            <select id="idMarca" name="idMarca" required>
-                <option value="">Seleccione una marca</option>
-                <c:forEach var="marca" items="${marcas}">
-                    <option value="${marca.idMarca}"
-                            <c:if test="${productoActual != null && productoActual.idMarca == marca.idMarca}">selected</c:if>>
-                        <c:out value="${marca.nombre}" />
-                    </option>
-                </c:forEach>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="idModelo">Modelo <span class="nota-campo">(opcional)</span></label>
-            <select id="idModelo" name="idModelo">
-                <option value="">Sin modelo</option>
-                <c:forEach var="modelo" items="${modelos}">
-                    <option value="${modelo.idModelo}"
-                            <c:if test="${productoActual != null && productoActual.idModelo != null && productoActual.idModelo == modelo.idModelo}">selected</c:if>>
-                        <c:out value="${modelo.nombre}" />
-                    </option>
-                </c:forEach>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="idColor">Color <span class="nota-campo">(opcional)</span></label>
-            <select id="idColor" name="idColor">
-                <option value="">Sin color</option>
-                <c:forEach var="color" items="${colores}">
-                    <option value="${color.idColor}"
-                            <c:if test="${productoActual != null && productoActual.idColor != null && productoActual.idColor == color.idColor}">selected</c:if>>
-                        <c:out value="${color.nombre}" />
-                    </option>
-                </c:forEach>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="cantidad">Cantidad</label>
-            <input type="number" id="cantidad" name="cantidad" min="0" step="1" placeholder="0"
-                   value="${productoActual != null ? productoActual.cantidad : ''}" required />
-        </div>
-
-        <div class="form-group">
-            <label for="precioUnitario">Precio unitario</label>
-            <input type="number" id="precioUnitario" name="precioUnitario" min="0" step="0.01" placeholder="0.00"
-                   value="${productoActual != null ? productoActual.precioUnitario : ''}" required />
-        </div>
-
-        <div class="form-group">
-            <label for="estado">Estado</label>
-            <select id="estado" name="estado" required>
-                <option value="1" <c:if test="${estadoSeleccionado == 1}">selected</c:if>>Activo</option>
-                <option value="0" <c:if test="${estadoSeleccionado == 0}">selected</c:if>>Inactivo</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="foto">Fotografía <span class="nota-campo">(opcional, hasta 5 MB)</span></label>
-            <input type="file" id="foto" name="foto" accept="image/*" />
-        </div>
-
-        <div class="form-acciones">
-            <button type="submit" class="btn-submit">Guardar producto</button>
-            <button type="reset" class="btn-reset">Limpiar</button>
-        </div>
+        <button type="submit">Guardar Color</button>
     </form>
 </div>
 
 <style>
-    /* Estilos del botón y barra superior */
-    .barra-superior {
-        background: linear-gradient(90deg, #14213d, #4361ee);
-        padding: 14px 28px;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        border-radius: 10px;
-        box-shadow: 0 4px 18px rgba(20, 33, 61, 0.25);
-        margin-bottom: 20px;
-    }
-
-    .btn-menu {
+     .form-container {
         background: #ffffff;
-        color: #14213d;
-        padding: 10px 22px;
-        border-radius: 999px;
-        text-decoration: none;
+        border-radius: 10px;
+         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem 2rem;
+        max-width: 420px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+        color: #1b5e20;
+    }
+     h2 {
+        color: #1b5e20;
+        margin-bottom: 1rem;
         font-weight: 600;
-        transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
-        box-shadow: 0 10px 20px rgba(20, 33, 61, 0.25);
+         text-align: center;
+    }
+     label {
+        display: block;
+        text-align: left;
+        margin-bottom: 0.5rem;
+        color: #1b5e20;
+        font-weight: 500;
     }
 
-    .btn-menu:hover {
-        color: #0a1128;
-        transform: translateY(-2px);
-        box-shadow: 0 14px 24px rgba(20, 33, 61, 0.35);
+    input[type="text"],
+    select {
+        width: 100%;
+        padding: 9px;
+        border: 1.5px solid #a5d6a7;
+        border-radius: 6px;
+        font-size: 15px;
+        outline: none;
+        transition: 0.2s;
+        margin-bottom: 1rem;
+        box-sizing: border-box;
+    }
+
+    input[type="text"]:focus,
+    select:focus {
+        border-color: #43a047;
+        box-shadow: 0 0 5px rgba(67,160,71,0.3);
+    }
+
+    button {
+        background-color: #43a047;
+        color: #fff;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 600;
+        width: 100%;
+        transition: background-color 0.2s ease, transform 0.2s;
+    }
+
+    button:hover {
+        background-color: #2e7d32;
+        transform: scale(1.02);
+    }
+
+    .mensaje-error {
+        background: #ffebee;
+        color: #c62828;
+        padding: 10px;
+        border-radius: 6px;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        border: 1px solid #c62828;
+        text-align: center;
     }
 </style>
+
+<script>
+    function validarFormulario() {
+        const nombreInput = document.getElementById("nombre");
+        const nombre = nombreInput.value.trim();
+
+        nombreInput.value = nombre.toUpperCase();
+
+        if (nombre.length === 0) {
+            alert("El nombre no puede estar vacío.");
+            return false;
+        }
+
+        if (nombre.length > 30) {
+            alert("El nombre no puede tener más de 30 caracteres.");
+            return false;
+        }
+
+        const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+$/;
+        if (!regex.test(nombre)) {
+            alert("El nombre solo puede contener letras y espacios (sin números ni símbolos).");
+            return false;
+        }
+
+        return true;
+    }
+</script>

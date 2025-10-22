@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+import Modelo.clsItemCarrito;
 
 public class clsDAOProducto implements CRUDProducto {
 
@@ -38,6 +39,8 @@ public class clsDAOProducto implements CRUDProducto {
             = "UPDATE tbproducto SET Estado = CASE WHEN Estado = 1 THEN 0 ELSE 1 END WHERE idProducto = ?";
     private static final String SQL_EXISTE_NOMBRE
             = "SELECT COUNT(*) FROM tbproducto WHERE LOWER(Nombre) = LOWER(?)";
+    private static final String SQL_DESCONTAR_STOCK
+            = "UPDATE tbproducto SET Cantidad = Cantidad - ? WHERE idProducto = ? AND Cantidad >= ?";
 
     @Override
     public List<clsProducto> mtdListarActivos() {
@@ -132,6 +135,73 @@ public class clsDAOProducto implements CRUDProducto {
             }
         } catch (SQLException e) {
             System.out.println("Error al validar nombre de producto: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public boolean mtdProcesarCompra(List<clsItemCarrito> items) {
+        if (items == null || items.isEmpty()) {
+            return false;
+        }
+
+        Connection con = null;
+        PreparedStatement ps = null;
+        try {
+            con = clsConexion.getConnection();
+            if (con == null) {
+                return false;
+            }
+            con.setAutoCommit(false);
+            ps = con.prepareStatement(SQL_DESCONTAR_STOCK);
+
+            for (clsItemCarrito item : items) {
+                if (item == null || item.getCantidad() <= 0) {
+                    con.rollback();
+                    return false;
+                }
+
+                ps.setInt(1, item.getCantidad());
+                ps.setInt(2, item.getIdProducto());
+                ps.setInt(3, item.getCantidad());
+                int filasActualizadas = ps.executeUpdate();
+
+                if (filasActualizadas == 0) {
+                    con.rollback();
+                    return false;
+                }
+            }
+
+            con.commit();
+            return true;
+        } catch (SQLException e) {
+            if (con != null) {
+                try {
+                    con.rollback();
+                } catch (SQLException ex) {
+                    System.out.println("Error al revertir la transacción de compra: " + ex.getMessage());
+                }
+            }
+            System.out.println("Error al procesar compra: " + e.getMessage());
+        } finally {
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) {
+                    System.out.println("Error al cerrar el PreparedStatement: " + e.getMessage());
+                }
+            }
+            if (con != null) {
+                try {
+                    con.setAutoCommit(true);
+                } catch (SQLException e) {
+                    System.out.println("Error al restaurar el autoCommit: " + e.getMessage());
+                }
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    System.out.println("Error al cerrar la conexión: " + e.getMessage());
+                }
+            }
         }
         return false;
     }
